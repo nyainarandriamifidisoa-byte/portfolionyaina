@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ny Aina Sarobidy RANDRIAMIFIDISOA – Portfolio</title>
+  <meta name="description" content="Portfolio de Ny Aina, développeur logiciel, étudiant en BTS SIO option SLAM.">
+
+  <!-- Polices Google (facultatif : le site reste lisible sans, grâce aux polices de secours) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       1. VARIABLES — modifie les couleurs et polices ici
+       ========================================================== */
+    :root {
+      --bg:        #f7f5fb;   /* fond de page (blanc lavande) */
+      --surface:   #ffffff;   /* fond des cartes */
+      --surface-2: #f1eefb;   /* fond des cartes au survol */
+      --line:      #e0dbee;   /* bordures discrètes */
+      --text:      #1d1b2e;   /* texte principal */
+      --muted:     #5e5a75;   /* texte secondaire */
+      --accent:    #6b57e8;   /* couleur d'accent : violet */
+      --accent-2:  #b4631f;   /* second accent : ambre */
+
+      --font-title: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+      --font-body:  "Hanken Grotesk", "Segoe UI", system-ui, sans-serif;
+      --radius: 18px;
+      --max: 1080px;          /* largeur maximale du contenu */
+    }
+
+    /* ==========================================================
+       2. BASE
+       ========================================================== */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 6px; }
+    .wrap { width: min(var(--max), 100% - 2.5rem); margin-inline: auto; }
+    section { padding: 5.5rem 0; }
+    h1, h2, h3 { font-family: var(--font-title); line-height: 1.1; margin: 0; }
+    h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin-bottom: .6rem; }
+    .section-intro { color: var(--muted); max-width: 52ch; margin: 0 0 2.5rem; }
+
+    /* ==========================================================
+       3. NAVIGATION
+       ========================================================== */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(247, 245, 251, .88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .logo { font-family: var(--font-title); font-weight: 800; font-size: 1.2rem; }
+    .logo span { color: var(--accent); }
+    .nav ul { display: flex; gap: 1.8rem; list-style: none; margin: 0; padding: 0; }
+    .nav ul a { color: var(--muted); font-weight: 500; transition: color .2s; }
+    .nav ul a:hover { color: var(--text); }
+    .menu-btn {
+      display: none; background: none; border: 1px solid var(--line);
+      color: var(--text); border-radius: 10px; padding: .4rem .8rem;
+      font: inherit; cursor: pointer;
+    }
+
+    /* ==========================================================
+       4. BOUTONS
+       ========================================================== */
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      padding: .8rem 1.4rem; border-radius: 999px;
+      font-weight: 600; border: 1px solid var(--line);
+      transition: transform .2s, background .2s, border-color .2s;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .btn-primary:hover { background: #5a46d4; border-color: #5a46d4; }
+
+    /* ==========================================================
+       5. HERO (À propos)
+       ========================================================== */
+    .hero { padding: 7rem 0 6rem; position: relative; overflow: hidden; }
+    /* Halo de couleur décoratif en arrière-plan */
+    .hero::before {
+      content: ""; position: absolute; top: -140px; right: -120px;
+      width: 460px; height: 460px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(107,87,232,.20), transparent 65%);
+      pointer-events: none;
+    }
+    .hero .wrap { position: relative; }
+    .hero h1 { font-size: clamp(2.8rem, 9vw, 5.8rem); font-weight: 800; letter-spacing: -.03em; }
+    .hero .role {
+      font-family: var(--font-title); font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+      color: var(--accent-2); margin: 1.1rem 0 1.4rem; font-weight: 500;
+    }
+    .hero p { color: var(--muted); max-width: 56ch; margin: 0 0 2rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: .9rem; }
+    /* Seule animation « automatique » de la page : l'arrivée du hero */
+    .hero .wrap > * { animation: rise .7s ease both; }
+    .hero .wrap > *:nth-child(2) { animation-delay: .1s; }
+    .hero .wrap > *:nth-child(3) { animation-delay: .2s; }
+    .hero .wrap > *:nth-child(4) { animation-delay: .3s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+    /* ==========================================================
+       6. PROJETS
+       ========================================================== */
+    .grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+    .card {
+      display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); overflow: hidden;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease, background .3s ease;
+    }
+    /* Effet de survol : la carte se soulève, la bordure et l'ombre prennent la couleur d'accent */
+    .card:hover, .card:focus-within {
+      transform: translateY(-8px);
+      background: var(--surface-2);
+      border-color: var(--accent);
+      box-shadow: 0 18px 40px -18px rgba(107,87,232,.40);
+    }
+    /* Bandeau visuel de la carte : change la couleur de --c1 / --c2 pour personnaliser */
+    .card-visual {
+      height: 130px; position: relative; overflow: hidden;
+      background: linear-gradient(135deg, var(--c1), var(--c2));
+    }
+    .card-visual::after {
+      content: ""; position: absolute; inset: -40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.28), transparent 50%);
+      transition: transform .6s ease;
+    }
+    .card:hover .card-visual::after { transform: translate(25%, 18%) scale(1.15); }
+    .card-visual b {
+      position: absolute; left: 1.3rem; bottom: .9rem; z-index: 1;
+      font-family: var(--font-title); font-size: 1.1rem; color: rgba(255,255,255,.92);
+    }
+    .card-body { padding: 1.5rem; display: flex; flex-direction: column; gap: .9rem; flex: 1; }
+    .card h3 { font-size: 1.45rem; }
+    .card p { color: var(--muted); margin: 0; font-size: 1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: auto; padding: 0; list-style: none; }
+    .tags li {
+      font-size: .82rem; padding: .2rem .7rem; border-radius: 999px;
+      border: 1px solid var(--line); color: var(--muted);
+    }
+    .card .btn { align-self: flex-start; padding: .6rem 1.1rem; font-size: .95rem; }
+    .card:hover .btn { background: var(--accent); color: #fff; border-color: var(--accent); }
+    /* Groupe de boutons d'une carte (utilisé par Supercar) */
+    .card-actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+
+    /* ==========================================================
+       7. CONTACT
+       ========================================================== */
+    .contact-box {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 6px); padding: clamp(2rem, 5vw, 3.5rem);
+      display: flex; flex-wrap: wrap; gap: 2rem; align-items: center; justify-content: space-between;
+    }
+    .contact-box p { color: var(--muted); max-width: 42ch; margin: 0; }
+    .contact-actions { display: flex; flex-direction: column; gap: .8rem; align-items: flex-start; }
+    .btn-github { font-size: 1.1rem; padding: 1rem 1.8rem; }
+    .mail { color: var(--accent-2); font-weight: 500; border-bottom: 1px solid transparent; }
+    .mail:hover { border-color: var(--accent-2); }
+
+    footer { border-top: 1px solid var(--line); padding: 1.8rem 0; color: var(--muted); font-size: .92rem; }
+
+    /* ==========================================================
+       8. RESPONSIVE (mobile)
+       ========================================================== */
+    @media (max-width: 720px) {
+      .menu-btn { display: block; }
+      .nav ul {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg);
+        border-bottom: 1px solid var(--line); padding: .5rem 1.25rem 1rem;
+      }
+      .nav ul.open { display: flex; }
+      .nav ul a { display: block; padding: .7rem 0; }
+      section { padding: 4rem 0; }
+      .hero { padding: 4.5rem 0 4rem; }
+    }
+
+    /* Respect des préférences d'accessibilité : pas d'animation si l'utilisateur les désactive */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <header>
+    <div class="wrap nav">
+      <a href="#accueil" class="logo">Ny Aina Portfolio<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul id="menu">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== HERO / À PROPOS ===== -->
+    <section class="hero" id="accueil">
+      <div class="wrap">
+        <h1>RANDRIAMIFIDISOA<br>Ny Aina Sarobidy</h1>
+        <p class="role">Développeur logiciel, étudiant en BTS SIO option SLAM</p>
+        
+        <p>Je conçois des applications du début à la fin : modélisation UML, base de données, interface et code. Je prépare mon BTS SIO option SLAM à MCCI Business School et je cherche à mettre mes compétences en pratique en entreprise.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projets">Voir mes projets</a>
+          <a class="btn" href="#contact">Me contacter</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJETS ===== -->
+    <section id="projets">
+      <div class="wrap">
+        <h2>Mes projets</h2>
+        <p class="section-intro">Trois réalisations, chacune présentée dans un support Canva.</p>
+
+        <div class="grid">
+
+          <!-- Projet 1 : Supercar -->
+          <article class="card">
+            <div class="card-visual" style="--c1:#5b4bd6; --c2:#9b8cff;"><b>Supercar</b></div>
+            <div class="card-body">
+              <h3>Supercar</h3>
+              
+              <p>Refactorisation du formulaire de contact côté client : code restructuré, plus lisible et plus facile à maintenir.</p>
+              <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Base de données</li></ul>
+              <!-- 🔗 Remplace [INSÉRER_LIEN_CANVA_SUPERCAR] par ton lien -->
+              <!-- 🔗 Remplace [INSÉRER_LIEN_SITE_SUPERCAR] par l'adresse du site du projet -->
+              <div class="card-actions">
+                <a class="btn" href="https://www.canva.com/design/DAHarXQguSM/cEJ8MepXIpF21LgqgPNQbA/edit?utm_content=DAHarXQguSM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton" target="_blank" rel="noopener noreferrer">Voir la présentation Canva</a>
+                <a class="btn" href="https://supercarnyaina.alwaysdata.net/supercar_client/index.php" target="_blank" rel="noopener noreferrer">Visiter le site</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Projet 2 : CineTrack -->
+          <article class="card">
+            <div class="card-visual" style="--c1:#c46a4a; --c2:#e0a26a;"><b>CineTrack</b></div>
+            <div class="card-body">
+              <h3>CineTrack</h3>
+              
+              <p>Application de bureau pour le Cinéma Le Lumière : conception UML, modèle relationnel, base de données et interface.</p>
+              <ul class="tags"><li>JavaFX</li><li>PostgreSQL</li><li>UML</li><li>JavaPOO</li></ul>        
+              <!-- 🔗 Remplace [INSÉRER_LIEN_CANVA_CINETRACK] par ton lien -->
+              <a class="btn" href="https://canva.link/c284o3udm3gp2lq" target="_blank" rel="noopener noreferrer">Voir la présentation Canva</a>
+            </div>
+          </article>
+
+          <!-- Projet 3 : Projet de stage -->
+          <article class="card">
+            <div class="card-visual" style="--c1:#2c7a7b; --c2:#4fb3a5;"><b>Projet de stage</b></div>
+            <div class="card-body">
+              <h3>Projet de stage</h3>
+              <!-- ✏️ Adapte la description et le nom du projet -->
+              <p>Application de gestion de stock développée en Java pendant mon stage : suivi des produits, interface et base de données.</p>
+              <ul class="tags"><li>Java</li><li>Gestion de stock</li></ul>
+              <!-- 🔗 Remplace [INSÉRER_LIEN_CANVA_STAGE] par ton lien -->
+              <a class="btn" href="https://canva.link/jwh9inj0acjendo" target="_blank" rel="noopener noreferrer">Voir la présentation Canva</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT / LIENS ===== -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact-box">
+          <div>
+            <h2>Travaillons ensemble</h2>
+            <p>Retrouve tout mon code sur GitHub, ou écris-moi pour un stage, un projet ou une question.</p>
+          </div>
+          <div class="contact-actions">
+            <!-- 🔗 Remplace [INSÉRER_LIEN_GITHUB] par l'adresse de ton dépôt -->
+            <a class="btn btn-primary btn-github" href="[INSÉRER_LIEN_GITHUB]" target="_blank" rel="noopener noreferrer">Voir mon GitHub</a>
+            <!-- ✉️ Remplace [INSÉRER_EMAIL] par ton adresse (aux deux endroits) -->
+            <a class="mail" href="mailto:nyainarandriamifidisoa@gmail.com">nyainarandriamifidisoa@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="year"></span> Ny Aina Sarobidy RANDRIAMIFIDISOA</div>
+  </footer>
+
+  <script>
+    // Menu mobile : ouvre / ferme la liste de liens
+    const btn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+    });
+    // Referme le menu après un clic sur un lien
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Année automatique dans le pied de page
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
